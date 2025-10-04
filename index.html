@@ -4,145 +4,308 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LinqServe - Find Services Near You</title>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
-    img.network-img {
-      width: 100%;
-      height: auto;
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    .hero-gradient {
+      background: var(--primary-gradient);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-custom {
+      border-radius: 50px;
+      padding: 12px 32px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+    }
+    
+    .btn-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .feature-card {
+      border: none;
+      border-radius: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      height: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .feature-card img {
+      height: 200px;
       object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .section-title {
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+      color: #718096;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+    
+    .how-it-works {
+      background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+    }
+    
+    .step-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 1rem;
+    }
+    
+    .screenshot-img {
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .screenshot-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    
+    .cta-section {
+      background: var(--secondary-gradient);
+      color: white;
+    }
+    
+    footer {
+      background: #1a202c;
+    }
+    
+    footer a {
+      transition: opacity 0.3s;
+    }
+    
+    footer a:hover {
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
   <!-- Hero Section -->
-  <section class="bg-primary text-white text-center py-5">
-    <div class="container">
-      <h1 class="display-4">Welcome to LinqServe</h1>
-      <p class="lead">Connecting you with trusted service providers nearby — and helping providers find new customers easily.</p>
-      <a href="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/app-debug.apk?alt=media&token=694e0ed0-db13-4e17-8247-b49f5b1fac42" class="btn btn-light btn-lg m-2">Download for Android</a>
-      <a href="#" class="btn btn-light btn-lg m-2" onclick="alert('Coming soon'); return false;">Download for iOS</a>
+  <section class="hero-gradient text-white text-center py-5">
+    <div class="container hero-content py-5">
+      <h1 class="display-3 fw-bold mb-3">Welcome to LinqServe</h1>
+      <p class="lead mb-4 fs-4">Connecting you with trusted service providers nearby — and helping providers find new customers easily.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/app-debug.apk?alt=media&token=694e0ed0-db13-4e17-8247-b49f5b1fac42" class="btn btn-light btn-custom btn-lg">
+          📱 Download for Android
+        </a>
+        <a href="#" class="btn btn-outline-light btn-custom btn-lg" onclick="alert('Coming soon'); return false;">
+          🍎 Download for iOS
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Features Section -->
   <section class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Why Choose LinqServe?</h2>
-      <div class="row">
+    <div class="container py-4">
+      <h2 class="section-title text-center display-5">Why Choose LinqServe?</h2>
+      <p class="section-subtitle text-center">Everything you need to connect services and customers in one powerful platform</p>
+      <div class="row g-4">
         <div class="col-md-4">
-          <div class="card shadow-sm mb-4">
-            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/5232fb00-e136-4140-a8b5-86c79c051ea5.jpg?alt=media&token=f25746c8-918f-47f7-be1c-a425c1c4ccfb" class="network-img card-img-top" alt="Nearby services">
+          <div class="card feature-card shadow">
+            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/5232fb00-e136-4140-a8b5-86c79c051ea5.jpg?alt=media&token=f25746c8-918f-47f7-be1c-a425c1c4ccfb" class="card-img-top" alt="Nearby services">
             <div class="card-body">
-              <h5 class="card-title">Find Nearby Services</h5>
-              <p class="card-text">Easily discover verified service providers close to your location.</p>
+              <h5 class="card-title fw-bold">🔍 Find Nearby Services</h5>
+              <p class="card-text">Easily discover verified service providers close to your location with real-time availability.</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card shadow-sm mb-4">
-            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/8726c6c2-62e3-4cc4-b957-a18ed3d94b72.jpg?alt=media&token=baa8b549-f539-474c-add2-c31f4c46a983" class="network-img card-img-top" alt="Business growth">
+          <div class="card feature-card shadow">
+            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/8726c6c2-62e3-4cc4-b957-a18ed3d94b72.jpg?alt=media&token=baa8b549-f539-474c-add2-c31f4c46a983" class="card-img-top" alt="Business growth">
             <div class="card-body">
-              <h5 class="card-title">Grow Your Business</h5>
-              <p class="card-text">Service providers can reach more customers and manage requests seamlessly.</p>
+              <h5 class="card-title fw-bold">📈 Grow Your Business</h5>
+              <p class="card-text">Service providers can reach more customers and manage requests seamlessly through our intuitive platform.</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card shadow-sm mb-4">
-            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/93f9384c-0faf-4d0b-b8d5-9343afa3a3ff.jpg?alt=media&token=f31bf25e-4325-46a3-86cd-ebadd693cc9c" class="network-img card-img-top" alt="Trusted and secure">
+          <div class="card feature-card shadow">
+            <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/93f9384c-0faf-4d0b-b8d5-9343afa3a3ff.jpg?alt=media&token=f31bf25e-4325-46a3-86cd-ebadd693cc9c" class="card-img-top" alt="Trusted and secure">
             <div class="card-body">
-              <h5 class="card-title">Trusted & Secure</h5>
-              <p class="card-text">Verified profiles and secure communication ensure reliability and trust.</p>
+              <h5 class="card-title fw-bold">🔒 Trusted & Secure</h5>
+              <p class="card-text">Verified profiles and secure communication ensure reliability and trust for every transaction.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works py-5">
+    <div class="container py-4">
+      <h2 class="section-title text-center display-5">How LinqServe Works</h2>
+      <p class="section-subtitle text-center">Get connected with the right service provider in three simple steps</p>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="step-icon">1</div>
+          <h4 class="fw-bold mb-3">Search Services</h4>
+          <p class="text-muted">Browse through a wide range of service categories or search for specific providers near your location.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-icon">2</div>
+          <h4 class="fw-bold mb-3">Connect & Chat</h4>
+          <p class="text-muted">Message providers directly through our secure platform to discuss your needs, pricing, and availability.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-icon">3</div>
+          <h4 class="fw-bold mb-3">Book & Review</h4>
+          <p class="text-muted">Schedule your service appointment and leave reviews to help others find quality service providers.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Screenshots Section -->
-  <section class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">App Screenshots</h2>
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.47.jpeg?alt=media&token=b800fa24-9cea-4ad8-af9d-361fbcb4733b" class="network-img rounded shadow" alt="Screenshot 1">
+  <section class="py-5">
+    <div class="container py-4">
+      <h2 class="section-title text-center display-5">See LinqServe in Action</h2>
+      <p class="section-subtitle text-center">Explore our intuitive interface designed for seamless service discovery</p>
+      <div class="row g-4">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.47.jpeg?alt=media&token=b800fa24-9cea-4ad8-af9d-361fbcb4733b" class="screenshot-img shadow-lg w-100" alt="Browse Services">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.48.jpeg?alt=media&token=1221ca9e-9b02-4337-93c6-3740d0cd6d66" class="network-img rounded shadow" alt="Screenshot 2">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.48.jpeg?alt=media&token=1221ca9e-9b02-4337-93c6-3740d0cd6d66" class="screenshot-img shadow-lg w-100" alt="Provider Profiles">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.49.jpeg?alt=media&token=11b78b9f-9f7c-4102-b923-ec0e2052762c" class="network-img rounded shadow" alt="Screenshot 3">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.49.jpeg?alt=media&token=11b78b9f-9f7c-4102-b923-ec0e2052762c" class="screenshot-img shadow-lg w-100" alt="Search & Filter">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.50%20(1).jpeg?alt=media&token=33df9bab-11fa-496b-b031-62e07710e307" class="network-img rounded shadow" alt="Screenshot 4">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.50%20(1).jpeg?alt=media&token=33df9bab-11fa-496b-b031-62e07710e307" class="screenshot-img shadow-lg w-100" alt="Messaging">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.50.jpeg?alt=media&token=0bc9fa0a-922f-49eb-8122-8f832622d0d2" class="network-img rounded shadow" alt="Screenshot 5">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.17.50.jpeg?alt=media&token=0bc9fa0a-922f-49eb-8122-8f832622d0d2" class="screenshot-img shadow-lg w-100" alt="Booking">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.26.56.jpeg?alt=media&token=6a66a0f1-4fd6-4537-bf79-782361487e3b" class="network-img rounded shadow" alt="Screenshot 6">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.26.56.jpeg?alt=media&token=6a66a0f1-4fd6-4537-bf79-782361487e3b" class="screenshot-img shadow-lg w-100" alt="Reviews">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.26.57.jpeg?alt=media&token=5f854bcd-7c1e-4f84-8fd6-5693cb284615" class="network-img rounded shadow" alt="Screenshot 7">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/WhatsApp%20Image%202025-08-14%20at%2013.26.57.jpeg?alt=media&token=5f854bcd-7c1e-4f84-8fd6-5693cb284615" class="screenshot-img shadow-lg w-100" alt="Dashboard">
         </div>
-        <div class="col-md-4 mb-3">
-          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/e623f692-6e94-4886-bc9c-8d7d6671410d.jpg?alt=media&token=d61158e6-48ce-4c84-8372-5690fb62596c" class="network-img rounded shadow" alt="Screenshot 8">
+        <div class="col-md-4 col-sm-6">
+          <img src="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/e623f692-6e94-4886-bc9c-8d7d6671410d.jpg?alt=media&token=d61158e6-48ce-4c84-8372-5690fb62596c" class="screenshot-img shadow-lg w-100" alt="Settings">
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA Section -->
+  <section class="cta-section py-5 text-center">
+    <div class="container py-4">
+      <h2 class="display-5 fw-bold mb-3">Ready to Get Started?</h2>
+      <p class="lead mb-4">Join thousands of users connecting with trusted service providers today</p>
+      <a href="https://firebasestorage.googleapis.com/v0/b/linqserve.firebasestorage.app/o/app-debug.apk?alt=media&token=694e0ed0-db13-4e17-8247-b49f5b1fac42" class="btn btn-light btn-custom btn-lg">Download Now</a>
+    </div>
+  </section>
+
   <!-- Contact Section -->
-  <section class="py-5 text-center">
-    <div class="container">
-      <h2 class="mb-4">Get in Touch</h2>
-      <p>Questions or feedback? We're here to help you.</p>
-      <a href="mailto:linqserve@gmail.com" class="btn btn-primary btn-lg">Contact Us</a>
+  <section class="py-5 text-center bg-light">
+    <div class="container py-4">
+      <h2 class="section-title mb-3">Get in Touch</h2>
+      <p class="lead text-muted mb-4">Questions or feedback? We're here to help you.</p>
+      <a href="mailto:linqserve@gmail.com" class="btn btn-primary btn-custom btn-lg">✉️ Contact Us</a>
     </div>
   </section>
 
   <!-- Privacy Policy Section -->
-  <section id="privacy-policy" class="py-5 bg-light">
+  <section id="privacy-policy" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-4">Privacy Policy</h2>
-      <p>
-        At <strong>LinqServe</strong>, we value your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our platform.
-      </p>
-      <h5>1. Information We Collect</h5>
-      <p>We may collect personal details such as your name, contact information, location data, and usage activity when you use our services.</p>
+      <h2 class="section-title text-center mb-4">Privacy Policy</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <p class="lead">
+            At <strong>LinqServe</strong>, we value your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our platform.
+          </p>
+          
+          <h5 class="mt-4 fw-bold">1. Information We Collect</h5>
+          <p>We may collect personal details such as your name, contact information, location data, and usage activity when you use our services.</p>
 
-      <h5>2. How We Use Your Information</h5>
-      <p>We use your data to connect you with service providers or customers, improve our platform, and ensure a secure experience.</p>
+          <h5 class="mt-4 fw-bold">2. How We Use Your Information</h5>
+          <p>We use your data to connect you with service providers or customers, improve our platform, and ensure a secure experience.</p>
 
-      <h5>3. Data Sharing</h5>
-      <p>Your data is not sold to third parties. It may only be shared with trusted service providers for functionality purposes.</p>
+          <h5 class="mt-4 fw-bold">3. Data Sharing</h5>
+          <p>Your data is not sold to third parties. It may only be shared with trusted service providers for functionality purposes.</p>
 
-      <h5>4. Security</h5>
-      <p>We implement security measures to protect your information, but no method of transmission over the internet is 100% secure.</p>
+          <h5 class="mt-4 fw-bold">4. Security</h5>
+          <p>We implement security measures to protect your information, but no method of transmission over the internet is 100% secure.</p>
 
-      <h5>5. Your Choices</h5>
-      <p>You can update or delete your information at any time by contacting us.</p>
+          <h5 class="mt-4 fw-bold">5. Your Choices</h5>
+          <p>You can update or delete your information at any time by contacting us.</p>
 
-      <h5>6. Contact Us</h5>
-      <p>If you have any questions regarding this policy, please email us at <a href="mailto:linqserve@gmail.com">linqserve@gmail.com</a>.</p>
+          <h5 class="mt-4 fw-bold">6. Contact Us</h5>
+          <p>If you have any questions regarding this policy, please email us at <a href="mailto:linqserve@gmail.com">linqserve@gmail.com</a>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-4 bg-dark text-white text-center">
+  <footer class="py-4 text-white text-center">
     <div class="container">
-      &copy; 2025 LinqServe. All rights reserved. | 
-      <a href="#privacy-policy" class="text-white text-decoration-underline">Privacy Policy</a>
+      <p class="mb-2">&copy; 2025 LinqServe. All rights reserved.</p>
+      <a href="#privacy-policy" class="text-white text-decoration-none">Privacy Policy</a>
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
